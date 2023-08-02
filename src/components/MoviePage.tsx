@@ -21,6 +21,7 @@ interface movieRepsonse {
     genre_ids: Array<number>,    
     popularity:number,
     vote_count:number,
+    backdrop_path?:string,
     
 }
 
@@ -117,7 +118,7 @@ const MoviePage:React.FC<MovieProps> = ({movie}) => {
                 </div>
                 <div className='paginationSection'>
                 {startNum>1 && <button className='previousSet' onClick={previousNumGenerator}>Previous Set</button>}
-                    <div>{newArr.map((ele: number, index: number) => {
+                    <div className='numberButtonSection'>{newArr.map((ele: number, index: number) => {
                         return (
                             <button className={page === ele ? 'active' : ''} key={index} onClick={(ele) => pageClick(ele)}>{ele}
                             </button>

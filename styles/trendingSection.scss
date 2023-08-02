@@ -27,7 +27,7 @@
             cursor: pointer;
             display: inline-block;
             font-size: .9vw;
-            line-height: .8vw;
+            // line-height: .8vw;
             margin-right: 4px;
             max-width: 0;
             opacity: 0;
@@ -36,6 +36,10 @@
             white-space: nowrap;
             color: #54b9c5;
             transition: max-width 1s, opacity 1s, transform .75s;
+            @include respond(mobile){
+                opacity: 1;
+                font-size: 2.9vw;
+            }
         }
 
         &:hover {

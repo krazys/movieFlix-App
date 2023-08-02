@@ -34,17 +34,39 @@ interface modalDetailedInfoResponse {
     number_of_episodes:number,
 }
 
+interface watchProvidersResponse {
+link:string,
+rent: Array<object>,
+provider_name:string,
+logo_path:string,
+buy: Array<object>,
+flatrate?: Array<object>,
+ads: Array<object>,
+}
+
 type TrendingBlockProps = {
     fetchedData: Array<fetchedDataResponse>,
 }
 const TrendingBlock: React.FC<TrendingBlockProps> = ({ fetchedData }) => {
 
     const [modalopen, setModalOpen] = useState<boolean>(false);
-    const [modalInfoData, setModalInfoData] = useState<fetchedDataResponse>()
-    const [modalDetailedInfo, setModalDetailedInfo] = useState<modalDetailedInfoResponse>()
+    const [elementsPerSlide, setElementsPerSlide] = useState<number>(1);
+    const [modalInfoData, setModalInfoData] = useState<fetchedDataResponse>();
+    const [watchProvidersData, setWatchProvidersData] = useState<watchProvidersResponse>();
+    const [modalDetailedInfo, setModalDetailedInfo] = useState<modalDetailedInfoResponse>();
 
     let groupedItems:any= [];
-    let elementsPerSlide = 4;
+
+    
+    window.addEventListener('resize', function( ){
+        if (this.window.innerWidth< 720){
+            setElementsPerSlide(1) ;
+        } else {
+            setElementsPerSlide(4) ;
+        }
+    });
+    
+    
     if (fetchedData.length > 4) {
         for (let i = 0; i < fetchedData.length; i += elementsPerSlide) {
 
@@ -66,6 +88,10 @@ const TrendingBlock: React.FC<TrendingBlockProps> = ({ fetchedData }) => {
     let response = await axios.get(`https://api.themoviedb.org/3/${modalInfoData.media_type}/${modalInfoData.id}?api_key=3e85d84a2d3e58168179cf80ecdecea5&append_to_response=videos`)
     console.log(response )
     setModalDetailedInfo(response?.data);
+
+    let watchProviderList = await axios.get(`https://api.themoviedb.org/3/${modalInfoData.media_type}/${modalInfoData.id}/watch/providers?api_key=3e85d84a2d3e58168179cf80ecdecea5`)
+    setWatchProvidersData(watchProviderList?.data?.results['US'])
+    console.log(watchProviderList, "watchProviderList" )
     // setTimeout(()=>{
     //     setModalDetailedInfo(response?.data);
     // }, 2000)
@@ -139,7 +165,8 @@ const TrendingBlock: React.FC<TrendingBlockProps> = ({ fetchedData }) => {
                 {modalopen && modalInfoData !== undefined &&
                     <ModalInfoView modalInfoData={modalInfoData} 
                     closemoreInfoModal={closemoreInfoModal}
-                    modalDetailedInfo={modalDetailedInfo}/>
+                    modalDetailedInfo={modalDetailedInfo}
+                    watchProvidersData={watchProvidersData}/>
                 }
             </div>
         </div>

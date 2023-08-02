@@ -3,6 +3,7 @@ import TrendingBlock from './TrendingBlock';
 import axios from 'axios';
 import {Link} from 'react-router-dom';
 import { AiOutlineDoubleRight} from "react-icons/ai";
+import '../../styles/trendingSection.scss';
 
 interface fetchedDataResponse{
     title:string,

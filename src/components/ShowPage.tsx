@@ -108,14 +108,14 @@ const ShowPage:React.FC<ShowProps> = ({tv}) => {
             <div className='MovieWrapper'>
                 <div className='filterSection'>
                     {/* <h2>{filterNameSelected} Movie</h2> */}
-                    <h2>Popular Shows</h2>
+                    <h2>Popular Movies & Shows</h2>
                 </div>
                 <div className='listSection'>
                     <ContentList movieList={movieList} tv={tv}/>
                 </div>
                 <div className='paginationSection'>
                 {startNum>1 && <button className='previousSet' onClick={previousNumGenerator}>Previous Set</button>}
-                    <div>{newArr.map((ele: number, index: number) => {
+                    <div className='numberButtonSection'>{newArr.map((ele: number, index: number) => {
                         return (
                             <button className={page === ele ? 'active' : ''} key={index} onClick={(ele) => pageClick(ele)}>{ele}
                             </button>

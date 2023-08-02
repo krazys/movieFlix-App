@@ -21,6 +21,7 @@ interface movieRepsonse {
     genre_ids: Array<number>,    
     popularity:number,
     vote_count:number,
+    backdrop_path?:string,
     
 }
 
@@ -113,11 +114,11 @@ const TrendingPage:React.FC<TrendingProps> = ({trending}) => {
                     <h2>Popular Movie</h2>
                 </div>
                 <div className='listSection'>
-                    <ContentList movieList={movieList} movie={trending}/>
+                    <ContentList movieList={movieList} trending={trending}/>
                 </div>
                 <div className='paginationSection'>
                 {startNum>1 && <button className='previousSet' onClick={previousNumGenerator}>Previous Set</button>}
-                    <div>{newArr.map((ele: number, index: number) => {
+                    <div className='numberButtonSection'>{newArr.map((ele: number, index: number) => {
                         return (
                             <button className={page === ele ? 'active' : ''} key={index} onClick={(ele) => pageClick(ele)}>{ele}
                             </button>
