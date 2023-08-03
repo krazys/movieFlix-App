@@ -11,7 +11,7 @@ const SearchWrapper = () => {
 
     const navigate = useNavigate();
 
-    const [inputValue, setInputValue] = useState<string>("Search for Movies, Shows..");
+    const [inputValue, setInputValue] = useState<string>("");
 
     const handleInputChange = (ele: any) => {
 
@@ -36,8 +36,8 @@ const SearchWrapper = () => {
                     <Routes>
                         <Route path='/search' element={<SearchResultsWrapper /> }/>
                         </Routes>
-                    <input type='text' name="search" value={inputValue} onChange={(ele) => handleInputChange(ele)} /> 
-                    <button onClick={handleSearch}><GrSearch /></button>
+                    <input type='text' name="search" value={inputValue} placeholder='Search for Movies, Shows..' onChange={(ele) => handleInputChange(ele)} /> 
+                    <button className="bubblyButton" onClick={handleSearch}><GrSearch /></button>
                 
                     
                 </div>

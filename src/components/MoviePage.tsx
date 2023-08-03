@@ -99,9 +99,7 @@ const MoviePage:React.FC<MovieProps> = ({movie}) => {
         generateNum(startNum, lastNum);
     }, [page, startNum, lastNum]);
 
-    useEffect(()=>{
-
-    }, [])
+   
 
    
 

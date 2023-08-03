@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import '../../styles/modalInfoView.scss';
 // import ReactPlayer from 'react-player';
-import YouTube, { YouTubeProps } from 'react-youtube';
-
+// import YouTube, { YouTubeProps } from 'react-youtube';
+import YoutubeEmbed from "./YoutubeEmbed";
 
 interface fetchedDataResponse {
     title: string,
@@ -63,19 +63,19 @@ const ModalInfoView: React.FC<ModalInfoViewProps> = ({ modalInfoData, closemoreI
         return x;
     };
 
-    const onPlayerReady: YouTubeProps['onReady'] = (event) => {
-        // access to player in all event handlers via event.target
-        event.target.playVideo();
-    }
+    // const onPlayerReady: YouTubeProps['onReady'] = (event) => {
+    //     // access to player in all event handlers via event.target
+    //     event.target.playVideo();
+    // }
 
-    const opts: YouTubeProps['opts'] = {
-        height: '360', // Default height for desktop view
-        width: '830',
-        playerVars: {
-            // https://developers.google.com/youtube/player_parameters
-            autoplay: 1,
-        },
-    };
+    // const opts: YouTubeProps['opts'] = {
+    //     height: '360', // Default height for desktop view
+    //     width: '830',
+    //     playerVars: {
+    //         // https://developers.google.com/youtube/player_parameters
+    //         autoplay: 1,
+    //     },
+    // };
 
     window.addEventListener('resize', function () {
         if (this.window.innerWidth < 720) {
@@ -150,7 +150,7 @@ const ModalInfoView: React.FC<ModalInfoViewProps> = ({ modalInfoData, closemoreI
             <div className='innerContainer' onClick={e => e.stopPropagation()}>
                 {/* <span className="close" >&times;</span> */}
                 <div className='videoSection'>
-                    {videoSource !=="" ? <YouTube videoId={videoSource} opts={opts} onReady={onPlayerReady} />:<p>No Video Found</p>}
+                    {videoSource !=="" ? <YoutubeEmbed embedId={videoSource} />:<p>No Video Found</p>}
                 </div>
                 <div className='movieInfoSection'>
                     <div className='leftSection'>
