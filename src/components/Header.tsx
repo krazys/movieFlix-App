@@ -1,31 +1,32 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 import '../../styles/Header.scss';
+import {FcSearch} from 'react-icons/fc'
+import SearchWrapper from './SearchWrapper';
+import {SiThemoviedatabase} from 'react-icons/si';
 
 const Header = () => {
-    const [ isNavExpanded, setIsNavExpanded] = useState(false);
+    const [isNavExpanded, setIsNavExpanded] = useState<boolean>(false);
+    const [isSearchOpen, setIsSearchOpen] = useState<boolean>(false);
 
 
-    const handleNavigation= ( )=>{
+    const handleNavigation = () => {
         setIsNavExpanded(!isNavExpanded);
+    }
+
+    const handleSearchOpen = ( )=>{
+        setIsSearchOpen(!isSearchOpen);
     }
 
     return (
 
         <div className='outerContainer'>
-            {/* <div className='innerContainer'>
-            <div className='logo'>
-                <img src="../../static/movie-board.png" alt="MovieFlix logo" />
-            </div>
-            <div className='rightLoginSection'>
-                <div className='buttonWrapper'>
-                    <button className='signIn'>Sign In</button>
-                    <button className='login'>Login</button>
-                </div>
-            </div>
-            </div> */}
             <nav className='navigation'>
                 <div className='logo'>
-                    <a href="/"><img src="../../static/movie-board.png" alt="MovieFlix logo" /></a>
+                    <a href="/"><SiThemoviedatabase/></a>
+                </div>
+                <div className='leftSection'>
+                <div className='searchBarSection'>
+                    <button onClick={handleSearchOpen}><FcSearch/></button>
                 </div>
                 <button className='hamBurger' onClick={handleNavigation}>
 
@@ -42,19 +43,24 @@ const Header = () => {
                         />
                     </svg>
                 </button>
-                <div className={`nav-menu ${isNavExpanded ? "expanded" : ""}` }>
+                <div className={`nav-menu ${isNavExpanded ? "expanded" : ""}`}>
                     <ul className='buttonWrapper'>
                         <li>
-                        <button className='signIn'>Sign In</button> 
+                            <button className='signIn'>Sign In</button>
                         </li>
                         <li>
-                        <button className='login'>Login</button>
+                            <button className='login'>Login</button>
                         </li>
                     </ul>
 
 
                 </div>
+                </div>
             </nav>
+
+            {
+                isSearchOpen && <SearchWrapper/>
+            }
         </div>
     )
 

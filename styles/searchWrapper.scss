@@ -1,0 +1,42 @@
+@import './variables.scss';
+
+.searchWrapper{
+    background-color: azure;
+
+    width:99%;
+    position: absolute;
+    z-index: 5;
+    @include respond(mobile){
+        width:97%;
+    }
+
+    .innerWrapper{
+        
+    padding: 12px;
+
+        .inputSection{
+            display: flex;
+            gap: 12px;
+            flex-direction: row;
+            justify-content: center;
+            align-items: center;
+
+            input{
+                border: 1px solid grey;
+                border-radius: 6px;
+                width:40%;
+                height: 2.3em;
+                color: #21243d;
+                padding: 0 12px;
+            }
+            button{
+                background-color: #c1fff6;
+                border: none;
+                cursor: pointer;
+                padding: 6px;
+                border-radius: 6px;
+            }
+        }
+    }
+
+}

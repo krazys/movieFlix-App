@@ -19,6 +19,26 @@
 
         .logo {
             padding: 8px 0;
+            a{
+                font-size: 50px;
+            }
+        }
+        .leftSection {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            gap: 28px;
+            @include respond(mobile) {
+                gap:70px;
+            }
+        .searchBarSection{
+            // position: relative;
+            button{
+                border: none;
+                background-color: transparent;
+                font-size: 24px;
+                cursor: pointer;
+            }
         }
 
         .hamBurger {
@@ -116,5 +136,6 @@
                 }
             }
         }
+    }
     }
 }

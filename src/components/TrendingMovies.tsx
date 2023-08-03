@@ -1,9 +1,10 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState,  startTransition } from 'react';
 import '../../styles/trendingSection.scss';
 import axios from 'axios';
 import TrendingBlock from './TrendingBlock';
 import { Link} from 'react-router-dom';
 import { AiOutlineDoubleRight} from "react-icons/ai";
+import {useNavigate} from 'react-router-dom';
 
 
 interface fetchedDataResponse {
@@ -23,6 +24,7 @@ interface fetchedDataResponse {
 }
 
 const TrendingMovies = () => {
+    const navigate = useNavigate();
 
 
     let [fetchedData, setFetchedData] = useState<Array<fetchedDataResponse>>([]);
@@ -40,6 +42,13 @@ const TrendingMovies = () => {
 
     }
 
+    const handleNavigation =( )=>{
+        startTransition( ()=>{
+            navigate('/movie');
+        })
+        
+    }
+
     useEffect(() => {
 
         trendingData();
@@ -48,7 +57,9 @@ const TrendingMovies = () => {
     return (
         <div className='trendingSection'>
                <div className='linkSection'><h4> Trending Movies</h4>
-           <Link to='/movie' ><button>Explore Movies <AiOutlineDoubleRight/></button></Link></div>
+           {/* <Link to='/movie' ><button>Explore Movies <AiOutlineDoubleRight/></button></Link> */}
+           <button onClick={handleNavigation}>Explore Movies <AiOutlineDoubleRight/></button>
+           </div>
             <div className='movieBlock'>
                 <TrendingBlock fetchedData={fetchedData}/>
             </div>
