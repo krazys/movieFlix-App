@@ -25,6 +25,11 @@ interface movieRepsonse {
     
 }
 
+interface genreResponse{
+    id:number,
+    name: string,
+}
+
 type MovieProps={
     movie:string;
 }
@@ -38,6 +43,7 @@ const MoviePage:React.FC<MovieProps> = ({movie}) => {
     let [lastNum, setlastNum] = useState<number>(10);
     let [newArr, setNewArr] = useState<Array<number>>([]);
     let [genreUrl, setGenreUrl] = useState<string>('');
+    let [genreList, setGenreList] = useState<Array<genreResponse>>([]);
 
     let numberArr: any = [];
 
@@ -99,6 +105,26 @@ const MoviePage:React.FC<MovieProps> = ({movie}) => {
         generateNum(startNum, lastNum);
     }, [page, startNum, lastNum]);
 
+    useEffect(()=>{
+        generFetch()
+    },[]);
+
+    const generFetch = async()=>{
+try{
+
+    let response = await axios.get(`https://api.themoviedb.org/3/genre/tv/list?api_key=3e85d84a2d3e58168179cf80ecdecea5`)
+console.log("response", response)
+setGenreList(response?.data?.genres);
+
+} catch(error){
+console.log(error);
+}
+    }
+
+    const handleGenreChange = ( )=>{
+        
+    }
+
    
 
    
@@ -110,6 +136,24 @@ const MoviePage:React.FC<MovieProps> = ({movie}) => {
                 <div className='filterSection'>
                     {/* <h2>{filterNameSelected} Movie</h2> */}
                     <h2>Popular Movie</h2>
+                    <div className='genreFilter'>
+                        <div className='actualFilter'>
+                            
+                                <ul>
+                                    {
+                                    genreList.map((ele, index)=>{
+                                        return(
+                                            <li key={index} onClick={handleGenreChange}>
+                                                {ele.name}
+                                            </li>
+                                        )
+                                    } )
+                                    }
+
+                                </ul>
+                            
+                        </div>
+                    </div>
                 </div>
                 <div className='listSection'>
                     <ContentList movieList={movieList} movie={movie}/>

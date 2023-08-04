@@ -3,6 +3,7 @@ import '../../styles/modalInfoView.scss';
 // import ReactPlayer from 'react-player';
 // import YouTube, { YouTubeProps } from 'react-youtube';
 import YoutubeEmbed from "./YoutubeEmbed";
+import { img_300 } from '../config/config';
 
 interface fetchedDataResponse {
     title: string,
@@ -15,9 +16,10 @@ interface fetchedDataResponse {
     first_air_date?: string,
     name?: string,
     id: number,
-    genre_ids: Array<number>,
+    genre_ids?: Array<number>,
     popularity: number,
     vote_count: number,
+    profile_path?: string,
 }
 
 interface modalDetailedInfoResponse {
@@ -27,7 +29,7 @@ interface modalDetailedInfoResponse {
     runtime: number,
     status: string,
     tagline: string,
-    videos: any,
+    videos?: any,
     number_of_seasons: number,
     number_of_episodes: number,
 
@@ -89,7 +91,7 @@ const ModalInfoView: React.FC<ModalInfoViewProps> = ({ modalInfoData, closemoreI
 
 
     const videoFetch = () => {
-        if (modalDetailedInfo != undefined) {
+        if (modalDetailedInfo != undefined && modalDetailedInfo.videos) {
             let xv = modalDetailedInfo.videos.result;
             // modalDetailedInfo.videos.results.map((ele: any) => {
             //     if (ele.type === 'Trailer') {
@@ -152,6 +154,7 @@ const ModalInfoView: React.FC<ModalInfoViewProps> = ({ modalInfoData, closemoreI
                 <div className='videoSection'>
                     {videoSource !=="" ? <YoutubeEmbed embedId={videoSource} />:<p>No Video Found</p>}
                 </div>
+                {modalInfoData.media_type !== "person" ?
                 <div className='movieInfoSection'>
                     <div className='leftSection'>
                         <h3>
@@ -272,7 +275,17 @@ const ModalInfoView: React.FC<ModalInfoViewProps> = ({ modalInfoData, closemoreI
                             {/* {runTimeContent} */}
                         </ul>
                     </div>
-                </div>
+                </div> :
+                <div className='movieInfoSection'>
+                    <div className='personDetails'>
+                        <div>
+                        <img width={284} height={200} src={`${img_300}${modalInfoData.profile_path !== null? modalInfoData.profile_path: "No Image Found"}`} alt="No Image Found" />
+                            </div>
+<h3> <span>Name:</span> &nbsp;   {modalInfoData.name}</h3>
+<p><span>Popularity:</span>&nbsp;{modalInfoData.popularity}</p>
+<p><span>Media Type:</span>&nbsp;{ modalInfoData.media_type}</p>
+                        </div>
+                    </div>}
 
 
             </div>

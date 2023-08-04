@@ -6,6 +6,9 @@
     position: absolute;
     width: 99%;
 
+    @include respond(mobile){
+    width: 95%;
+    }
     .innerWrapper {
         padding: 4px 12px;
         margin-top: 76px;
@@ -41,6 +44,7 @@
                     padding: 12px;
                     width: 320px;
                     align-items: center;
+                    cursor: pointer;
                     @include respond(mobile){
                         width: 340px;
                     }

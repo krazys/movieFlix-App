@@ -4,9 +4,10 @@ import '../../styles/searchResultsWrapper.scss';
 import { img_300 } from '../config/config';
 import axios from 'axios';
 import { useParams } from "react-router-dom";
+import ModalInfoView from './ModalInfoView';
 
 interface searchResponseType {
-    adult: string,
+    adult: boolean,
     backdrop_path: string,
     id: number,
     media_type: string,
@@ -20,7 +21,30 @@ interface searchResponseType {
     overview: string,
     original_name:string,
     name:string,
+    vote_count: number,
 
+}
+
+interface watchProvidersResponse {
+    link:string,
+    rent: Array<object>,
+    provider_name:string,
+    logo_path:string,
+    buy: Array<object>,
+    flatrate?: Array<object>,
+    ads: Array<object>,
+    }
+
+interface modalDetailedInfoResponse {
+    genres: Array<object>,
+    imdb_id: string,
+    revenue: number,
+    runtime: number,
+    status: string,
+    tagline: string,
+    videos: any,
+    number_of_seasons:number,
+    number_of_episodes:number,
 }
 // type searchResponseProps = {
 //     inputValue: string;
@@ -30,6 +54,10 @@ const SearchResultsWrapper = () => {
 
     let params = useParams();
     const [searchResponse, setSearchResponse] = useState<Array<searchResponseType>>([]);
+    const [modalDetailedInfo, setModalDetailedInfo] = useState<modalDetailedInfoResponse>();
+    const [watchProvidersData, setWatchProvidersData] = useState<watchProvidersResponse>();
+    const [modalInfoData, setModalInfoData] = useState<searchResponseType>();
+    const [modalopen, setModalOpen] = useState<boolean>(false);
 
     const searchCall = async (inputValue: string) => {
         try {
@@ -49,11 +77,49 @@ const SearchResultsWrapper = () => {
         if (params.data) {
             searchCall(params.data);
         }
-
-
-
     }, [params]);
 
+    const movieDetails = async (modalInfoData:any)=>{
+
+        try{
+            if (modalInfoData.media_type !=='person') {
+
+            
+            console.log(modalInfoData.id, modalInfoData.media_type)
+            let media_type = modalInfoData.media_type !== undefined ? modalInfoData.media_type: "";
+    let response = await axios.get(`https://api.themoviedb.org/3/${media_type}/${modalInfoData.id}?api_key=3e85d84a2d3e58168179cf80ecdecea5&append_to_response=videos`)
+    console.log("deatiled",response )
+    setModalDetailedInfo(response?.data);
+    let watchProviderList = await axios.get(`https://api.themoviedb.org/3/${media_type}/${modalInfoData.id}/watch/providers?api_key=3e85d84a2d3e58168179cf80ecdecea5`)
+    setWatchProvidersData(watchProviderList?.data?.results['US'])
+    console.log(watchProviderList, modalInfoData.id, "watchProviderList" )
+
+            } else if (modalInfoData.media_type ==='person' ){
+                let response = await axios.get(`https://api.themoviedb.org/3/search/person?api_key=3e85d84a2d3e58168179cf80ecdecea5&append_to_response=videos`)
+                console.log("deatiled",response )
+                setModalDetailedInfo(response?.data);
+            }
+    
+    
+        } catch (error){
+            console.log("deatiled", modalInfoData)
+    console.log(error)
+        }
+    }
+
+  
+
+    const openmoreInfoModal = (index:number) => {
+        setModalInfoData(searchResponse[index] )
+        setModalOpen(!modalopen);
+        // console.log("NUM",index, indexInner);
+       let value= movieDetails(searchResponse[index]);
+    //    setModalInfoData(value)
+    }
+    const closemoreInfoModal = () => {
+        setModalOpen(!modalopen);
+        console.log("Callback function executed!");
+    }
 
 
     return (
@@ -70,7 +136,7 @@ const SearchResultsWrapper = () => {
                                     searchResponse.map((ele, index) => {
                                         const title = ele.title || ele.original_title || ele.name ||ele.original_name ||  'no data';
                                         return (
-                                            <div key={index} className='resultListIndividulaElem'>
+                                            <div key={index} className='resultListIndividulaElem' onClick={()=>openmoreInfoModal(index)}>
                                                 <div className='leftSection'>
                                                     <img width={65} height={65} src={`${img_300}${ele.poster_path !== '' ? ele.poster_path : ele.backdrop_path}`} alt="No Data" />
                                                 </div>
@@ -91,6 +157,13 @@ const SearchResultsWrapper = () => {
 
                         }
                     </div>
+                    {modalopen && modalInfoData !== undefined &&
+                    <ModalInfoView modalInfoData={modalInfoData} 
+                    closemoreInfoModal={closemoreInfoModal}
+                    modalDetailedInfo={modalDetailedInfo}
+                    
+                     watchProvidersData={watchProvidersData}/>
+                }
                 </div>
 
             </div>

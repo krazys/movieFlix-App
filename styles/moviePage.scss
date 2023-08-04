@@ -5,10 +5,11 @@
 
     .filterSection {
         background-color: azure;
-        padding: 12px 0;
+        padding: 18px 0;
         display: flex;
         align-items: center;
         justify-content: center;
+        position: relative;
 
         h2 {
             font-family: $primary-font;
@@ -17,6 +18,26 @@
             font-size: 18px;
             margin-block-start: unset;
             margin-block-end: unset;
+        }
+        .genreFilter{
+            background-color: rgb(157, 245, 245);
+            position: absolute;
+            z-index: 6;
+            top:38px;
+            right: 52px;
+            .actualFilter{
+                font-size: 14px;
+
+                ul{
+                    li{
+                        list-style: none;
+                        font-family: $secondary-font;
+                        padding-bottom: 4px;
+                        font-size: 16px;
+                        cursor: pointer;
+                    }
+                }
+            }
         }
     }
 

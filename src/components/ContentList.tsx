@@ -61,8 +61,7 @@ const ContentList:React.FC<ContentListProps> = ({movieList, movie, tv, trending}
     const [modalDetailedInfo, setModalDetailedInfo] = useState<modalDetailedInfoResponse>();
     const [watchProvidersData, setWatchProvidersData] = useState<watchProvidersResponse>();
 
-    let groupedItems:any= [];
-
+   
 
     const movieDetails = async (modalInfoData:any)=>{
 
