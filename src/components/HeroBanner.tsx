@@ -1,5 +1,6 @@
 import react from 'react';
 import '../../styles/heroBanner.scss';
+import {CgScrollV} from 'react-icons/cg';
 
 const HeroBanner= ( )=>{
 
@@ -11,6 +12,13 @@ const HeroBanner= ( )=>{
                     Browse through top trending Movies & Shows
                 </h1>
                 <p>Scroll down to view latest content</p>
+            </div>
+
+            <div className='signup'>
+                
+            </div>
+            <div className='scrollDown'>
+                <CgScrollV/>
             </div>
             </div>
         </div>
