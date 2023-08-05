@@ -1,9 +1,9 @@
-## TMDB-like Movie & Shows Info WebApp with some Netflix-like UI Elements (React & TypeScript)
+## TMDB-like Movie & Shows Info WebApp with some Netflix-like UI Elements (React & TypeScript) 💥
 ## Summary
-This repository contains a (Eventual - full-stack) web application that I have built from the ground up. The WebApp serves as my personal implementation of TMDB (The Movie Database), providing a comprehensive movie and shows database with some captivating Netflix-like UI elements. The project is developed using React with TypeScript, making it a powerful and efficient application.
+This repository contains a (Eventual - full-stack) 🌱 web application that I have built from the ground up. The WebApp serves as my personal implementation of TMDB (The Movie Database), providing a comprehensive movie and shows database with some captivating Netflix-like UI elements. The project is developed using React with TypeScript, making it a powerful and efficient application.
 
-## Features
-- **TMDB-like Database:** This project features a movie and shows database that allows users to explore a vast collection of films and TV shows.
+## Features ⚡️
+- **TMDB-like Database:** This project features a movie and shows database that allows users to explore a vast collection of films and TV shows fetched from TMDB.
  - **Netflix-like UI Elements:** The WebApp boasts an attractive and user-friendly UI, inspired by Netflix's captivating design, offering a seamless browsing experience.
 **React Routing:** The application leverages React Routing for smooth navigation between different sections and pages.
 - **State Management with Hooks:** For efficient state management, the project utilizes React Hooks, ensuring optimized and well-organized data handling.
