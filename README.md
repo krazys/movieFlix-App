@@ -8,7 +8,7 @@ This repository contains a (Eventual - full-stack) 🌱 web application that I h
 - **React Routing:** The application leverages React Routing for smooth navigation between different sections and pages.
 - **State Management with Hooks:** For efficient state management, the project utilizes React Hooks, ensuring optimized and well-organized data handling.
 - **Responsive UI with SCSS:** The user interface is responsive and adapts smoothly to various screen sizes, powered by the SCSS preprocessor for enhanced styling.
-- **Lazy Load Components:** React.lazy lazy-loaded component wrapped in React's Suspense component.
+- **Lazy Load Components:** React.lazy lazy-loaded component wrapped in React's Suspense component & also startTransition API.
 - **Minimal 3rd Party Dependencies:** To keep the project lightweight and maintain full control over the codebase, with custom Webpack, Babel, typescript Eslint configuration without create-react-app,  it utilizes only a few external dependencies:
 1) *react-router-dom* for routing purposes.
 2) *react-swipeable* to incorporate smooth swipe actions.
