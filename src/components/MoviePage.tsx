@@ -44,7 +44,7 @@ type MovieProps = {
 const MoviePage: React.FC<MovieProps> = ({ movie }) => {
 
     let [movieList, setMovieList] = useState<Array<movieRepsonse>>([]);
-    let [filterNameSelected, setFilterNameSelected] = useState<string>('now_playing');
+    // let [filterNameSelected, setFilterNameSelected] = useState<string>('now_playing');
     let [isDropdownOpen, setIsDropdownOpen] = useState<boolean>(false);
     let [page, setPage] = useState<number>(1);
     let [startNum, setStartNum] = useState<number>(1);
@@ -53,7 +53,7 @@ const MoviePage: React.FC<MovieProps> = ({ movie }) => {
     let [genreUrlId, setGenreUrlId] = useState<string>('');
     let [genreList, setGenreList] = useState<Array<genreResponse>>([]);
     // let [genreListModify, setGenreListModify] = useState<Array<genreResponseModify>>([]);
-    const [selectedGenreIds, setSelectedGenreIds] = useState<Array<number>>([]);
+    // const [selectedGenreIds, setSelectedGenreIds] = useState<Array<number>>([]);
 
     let numberArr: any = [];
 

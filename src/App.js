@@ -10,6 +10,7 @@ import ShowPage from './components/ShowPage';
 import TrendingPage from './components/TrendingPage';
 // import SearchResultsWrapper from './components/SearchResultsWrapper';
 const SearchResultsWrapper= lazy( ()=> import('./components/SearchResultsWrapper'));
+// import NotFound from './components/NotFound';
 
 
 const App =( )=>{
@@ -23,7 +24,7 @@ return(
     <Route path='/shows' element={<ShowPage tv='tv'/> }/>
     <Route path='/trending' element={<TrendingPage trending='trending'/> }/>
     <Route path='/search/:data' element={<SearchResultsWrapper/>} />
-
+    {/* <Route element={<NotFound/>} /> */}
     </Routes>
     </Suspense>
         </AppLayoutContextWrapper>

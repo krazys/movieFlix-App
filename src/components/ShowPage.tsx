@@ -29,7 +29,7 @@ tv:string;
 const ShowPage:React.FC<ShowProps> = ({tv}) => {
 
     let [movieList, setMovieList] = useState<Array<showRepsonse>>([]);
-    let [filterNameSelected, setFilterNameSelected] = useState<string>('now_playing');
+    // let [filterNameSelected, setFilterNameSelected] = useState<string>('now_playing');
     let [page, setPage] = useState<number>(1);
     let [startNum, setStartNum] = useState<number>(1);
     let [lastNum, setlastNum] = useState<number>(10);

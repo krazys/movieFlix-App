@@ -7,6 +7,7 @@ module.exports = {
     path: path.join(__dirname, "/dist"),
     filename: "blog.js",
     clean: true,
+    publicPath: '/',
   },
   devtool: "source-map",
   module: {
@@ -32,6 +33,9 @@ module.exports = {
         exclude: /node_modules/,
       },
     ],
+  },
+  devServer: {
+historyApiFallback:true,
   },
   resolve: {
     extensions: ['.tsx', '.ts', '.js'],
