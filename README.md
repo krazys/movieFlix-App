@@ -16,3 +16,4 @@ This repository contains a (Eventual - full-stack) 🌱 web application that I h
 4) *TypeScript* for type safety and better development experience.
 5) *axios* for easy API integration.
 6) *react-icons* for incorporating icons seamlessly.
+7) *react-error-boundary* for catch JS errors & Fallback UI
