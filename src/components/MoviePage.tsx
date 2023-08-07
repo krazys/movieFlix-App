@@ -252,7 +252,7 @@ let stringGenreIdArr;
                 </div> : <h3>No Data Found.</h3>}
                 <div className='paginationSection'>
                     {startNum > 1 && <button className='previousSet' onClick={previousNumGenerator}>Previous Set</button>}
-                    <div className='numberButtonSection'>{newNumberArr.slice(0, 10).map((ele: number, index: number) => {
+                    <div className='numberButtonSection'>{newNumberArr.map((ele: number, index: number) => {
                         return (
                             <button className={page === ele ? 'active' : ''} key={index} onClick={(ele) => pageClick(ele)}>{ele}
                             </button>

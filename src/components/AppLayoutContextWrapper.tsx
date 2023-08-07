@@ -1,7 +1,7 @@
 import React from 'react';
 import AppLayout from './AppLayout';
 import { ErrorBoundary } from 'react-error-boundary';
-import NotFound from './NotFound';
+// import NotFound from './NotFound';
 import { useNavigate } from 'react-router-dom';
 
 interface Props{

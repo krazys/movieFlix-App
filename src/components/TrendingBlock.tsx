@@ -113,6 +113,11 @@ const TrendingBlock: React.FC<TrendingBlockProps> = ({ fetchedData }) => {
 
     useEffect( ( )=>{
         movieDetails(modalInfoData);
+        if (window.innerWidth< 720){
+            setElementsPerSlide(1) ;
+        } else {
+            setElementsPerSlide(4) ;
+        }
 
        }, [modalInfoData])
 
